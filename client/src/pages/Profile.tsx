@@ -46,7 +46,7 @@ const Profile = () => {
         <div className="col-12 col-md-10 mb-5">
           <ThoughtList
             thoughts={user.thoughts}
-            title={`${user.username}'s thoughts...`}
+            title={`${user.username}'s reviews...`}
           />
         </div>
         {!userParam && (
