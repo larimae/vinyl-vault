@@ -15,7 +15,7 @@ interface ThoughtListProps {
 
 const ThoughtList: React.FC<ThoughtListProps> = ({ thoughts, title }) => {
   if (!thoughts.length) {
-    return <h3>No Thoughts Yet</h3>;
+    return <h3>No Reviews Yet</h3>;
   }
 
   return (
@@ -27,7 +27,7 @@ const ThoughtList: React.FC<ThoughtListProps> = ({ thoughts, title }) => {
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {thought.thoughtAuthor} <br />
               <span style={{ fontSize: '1rem' }}>
-                had this thought on {new Date(Number(thought.createdAt)).toLocaleString()}
+                Made this review on {new Date(Number(thought.createdAt)).toLocaleString()}
               </span>
             </h4>
             <div className="card-body bg-light p-2">
@@ -38,7 +38,7 @@ const ThoughtList: React.FC<ThoughtListProps> = ({ thoughts, title }) => {
               className="btn btn-primary btn-block btn-squared"
               to={`/thoughts/${thought._id}`}
             >
-              Join the discussion on this thought.
+              Comment on this review.
             </Link>
           </div>
         ))}
