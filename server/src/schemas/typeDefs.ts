@@ -4,26 +4,26 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
+    vinyls: [Vinyl]!
   }
 
-  type Thought {
+  type Vinyl {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
+    vinylText: String
+    artist: String
     createdAt: String
-    comments: [Comment]!
+    reviews: [Review]!
   }
 
-  type Comment {
+  type Review {
     _id: ID
-    commentText: String
+    reviewText: String
     createdAt: String
   }
 
-  input ThoughtInput {
-    thoughtText: String!
-    thoughtAuthor: String!
+  input vinylInput {
+    vinylText: String!
+    artist: String!
   }
 
   input UserInput {
@@ -40,18 +40,18 @@ const typeDefs = `
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts: [Thought]!
-    thought(thoughtId: ID!): Thought
+    vinyls: [Vinyl]!
+    vinyl(vinylId: ID!): Vinyl
     me: User
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    addThought(input: ThoughtInput!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addVinyl(input: VinylInput!): Vinyl
+    addReview(vinylId: ID!, reviewText: String!): Vinyl
+    removeVinyl(vinylId: ID!): Vinyl
+    removeReview(vinylId: ID!, reviewId: ID!): Vinyl
   }
 `;
 
