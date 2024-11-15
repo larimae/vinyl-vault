@@ -1,4 +1,4 @@
-import { Thought, User } from '../models/index.js';
+import { Vinyl, User } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js'; 
 
 // Define types for the arguments
@@ -19,47 +19,47 @@ interface UserArgs {
   username: string;
 }
 
-interface ThoughtArgs {
-  thoughtId: string;
+interface VinylArgs {
+  vinylId: string;
 }
 
-interface AddThoughtArgs {
+interface AddVinylArgs {
   input:{
-    thoughtText: string;
-    thoughtAuthor: string;
+    vinylText: string;
+    artist: string;
   }
 }
 
-interface AddCommentArgs {
-  thoughtId: string;
-  commentText: string;
+interface AddReviewArgs {
+  vinylId: string;
+  reviewText: string;
 }
 
-interface RemoveCommentArgs {
-  thoughtId: string;
-  commentId: string;
+interface RemoveReviewArgs {
+  vinylId: string;
+  reviewId: string;
 }
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('vinyls');
     },
     user: async (_parent: any, { username }: UserArgs) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('vinyls');
     },
-    thoughts: async () => {
-      return await Thought.find().sort({ createdAt: -1 });
+    vinyls: async () => {
+      return await Vinyl.find().sort({ createdAt: -1 });
     },
-    thought: async (_parent: any, { thoughtId }: ThoughtArgs) => {
-      return await Thought.findOne({ _id: thoughtId });
+    vinyl: async (_parent: any, { vinylId }: VinylArgs) => {
+      return await Vinyl.findOne({ _id: vinylId });
     },
     // Query to get the authenticated user's information
     // The 'me' query relies on the context to check if the user is authenticated
     me: async (_parent: any, _args: any, context: any) => {
-      // If the user is authenticated, find and return the user's information along with their thoughts
+      // If the user is authenticated, find and return the user's information along with their Vinyls
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('vinyls');
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
@@ -100,27 +100,27 @@ const resolvers = {
       // Return the token and the user
       return { token, user };
     },
-    addThought: async (_parent: any, { input }: AddThoughtArgs, context: any) => {
+    addVinyl: async (_parent: any, { input }: AddVinylArgs, context: any) => {
       if (context.user) {
-        const thought = await Thought.create({ ...input });
+        const vinyl = await Vinyl.create({ ...input });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
+          { $addToSet: { vinyls: vinyl._id } }
         );
 
-        return thought;
+        return vinyl;
       }
       throw AuthenticationError;
       ('You need to be logged in!');
     },
-    addComment: async (_parent: any, { thoughtId, commentText }: AddCommentArgs, context: any) => {
+    addReview: async (_parent: any, { vinylId, reviewText }: AddReviewArgs, context: any) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Vinyl.findOneAndUpdate(
+          { _id: vinylId },
           {
             $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
+              reviews: { reviewText, reviewAuthor: context.user.username },
             },
           },
           {
@@ -131,35 +131,35 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeThought: async (_parent: any, { thoughtId }: ThoughtArgs, context: any) => {
+    removeVinyl: async (_parent: any, { vinylId }: VinylArgs, context: any) => {
       if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
+        const vinyl = await Vinyl.findOneAndDelete({
+          _id: vinylId,
+          vinylAuthor: context.user.username,
         });
 
-        if(!thought){
+        if(!vinyl){
           throw AuthenticationError;
         }
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+          { $pull: { vinyls: vinyl._id } }
         );
 
-        return thought;
+        return vinyl;
       }
       throw AuthenticationError;
     },
-    removeComment: async (_parent: any, { thoughtId, commentId }: RemoveCommentArgs, context: any) => {
+    removeReview: async (_parent: any, { vinylId, reviewId }: RemoveReviewArgs, context: any) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Vinyl.findOneAndUpdate(
+          { _id: vinylId },
           {
             $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
+              reviews: {
+                _id: reviewId,
+              reviewAuthor: context.user.username,
               },
             },
           },

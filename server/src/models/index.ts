@@ -1,4 +1,4 @@
-import Thought from './Thought.js';
+import Vinyl from './Vinyl.js';
 import User from './User.js';
 
-export { Thought, User };
+export { Vinyl, User };
