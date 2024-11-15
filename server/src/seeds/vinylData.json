@@ -1,42 +1,42 @@
 [
   {
-    "thoughtText": "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?",
-    "thoughtAuthor": "Brian Kernighan"
+    "vinylText": "Everyone knows that debugging is twice as hard as writing a program in the first place. So if you're as clever as you can be when you write it, how will you ever debug it?",
+    "artist": "Brian Kernighan"
   },
   {
-    "thoughtText": "Some of the best programming is done on paper, really. Putting it into the computer is just a minor detail.",
-    "thoughtAuthor": "Max Kanat-Alexander"
+    "vinylText": "Some of the best programming is done on paper, really. Putting it into the computer is just a minor detail.",
+    "artist": "Max Kanat-Alexander"
   },
   {
-    "thoughtText": "When you don't create things, you become defined by your tastes rather than ability. Your tastes only narrow & exclude people. So create.",
-    "thoughtAuthor": "Why The Lucky Stiff"
+    "vinylText": "When you don't create things, you become defined by your tastes rather than ability. Your tastes only narrow & exclude people. So create.",
+    "artist": "Why The Lucky Stiff"
   },
   {
-    "thoughtText": "I'm not a great programmer; I'm just a good programmer with great habits.",
-    "thoughtAuthor": "Kent Beck"
+    "vinylText": "I'm not a great programmer; I'm just a good programmer with great habits.",
+    "artist": "Kent Beck"
   },
   {
-    "thoughtText": "Walking on water and developing software from a specification are easy if both are frozen.",
-    "thoughtAuthor": "Edward V. Berard"
+    "vinylText": "Walking on water and developing software from a specification are easy if both are frozen.",
+    "artist": "Edward V. Berard"
   },
   {
-    "thoughtText": "The most disastrous thing that you can ever learn is your first programming language.",
-    "thoughtAuthor": "Alan Kay"
+    "vinylText": "The most disastrous thing that you can ever learn is your first programming language.",
+    "artist": "Alan Kay"
   },
   {
-    "thoughtText": "The most important property of a program is whether it accomplishes the intention of its user.",
-    "thoughtAuthor": "C.A.R. Hoare"
+    "vinylText": "The most important property of a program is whether it accomplishes the intention of its user.",
+    "artist": "C.A.R. Hoare"
   },
   {
-    "thoughtText": "Delivering good software today is often better than perfect software tomorrow, so finish things and ship.",
-    "thoughtAuthor": "David Thomas"
+    "vinylText": "Delivering good software today is often better than perfect software tomorrow, so finish things and ship.",
+    "artist": "David Thomas"
   },
   {
-    "thoughtText": "If you optimize everything, you will always be unhappy.",
-    "thoughtAuthor": "Donald Knuth"
+    "vinylText": "If you optimize everything, you will always be unhappy.",
+    "artist": "Donald Knuth"
   },
   {
-    "thoughtText": "It's not a bug; it's an undocumented feature.",
-    "thoughtAuthor": "Anonymous"
+    "vinylText": "It's not a bug; it's an undocumented feature.",
+    "artist": "Anonymous"
   }
 ]
