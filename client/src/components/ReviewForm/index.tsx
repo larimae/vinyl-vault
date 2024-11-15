@@ -1,25 +1,25 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_REVIEW } from '../../utils/mutations';
 
-const CommentForm = ({ thoughtId }: any) => {
-  const [commentText, setCommentText] = useState('');
+const ReviewForm = ({ vinylId }: any) => {
+  const [reviewText, setReviewText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addComment, { error }] = useMutation(ADD_COMMENT);
+  const [addReview, { error }] = useMutation(ADD_REVIEW);
 
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
-      await addComment({
+      await addReview({
         variables: { 
-          thoughtId, commentText 
+          vinylId, reviewText 
         }
       });
 
-      setCommentText('');
+      setReviewText('');
     } catch (err) {
       console.error(err);
     }
@@ -28,15 +28,15 @@ const CommentForm = ({ thoughtId }: any) => {
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = event.target;
 
-    if (name === 'commentText' && value.length <= 280) {
-      setCommentText(value);
+    if (name === 'reviewText' && value.length <= 280) {
+      setReviewText(value);
       setCharacterCount(value.length);
     }
   };
 
   return (
     <div>
-      <h4>What are your thoughts on this thought?</h4>
+      <h4>What are your vinyls on this vinyl?</h4>
       <p
         className={`m-0 ${
           characterCount === 280 || error ? 'text-danger' : ''
@@ -51,9 +51,9 @@ const CommentForm = ({ thoughtId }: any) => {
       >
         <div className="col-12 col-lg-9">
           <textarea
-            name="commentText"
-            placeholder="Add your comment..."
-            value={commentText}
+            name="reviewText"
+            placeholder="Add your review..."
+            value={reviewText}
             className="form-input w-100"
             style={{ lineHeight: '1.5' }}
             onChange={handleChange}
@@ -62,7 +62,7 @@ const CommentForm = ({ thoughtId }: any) => {
 
         <div className="col-12 col-lg-3">
           <button className="btn btn-primary btn-block py-3" type="submit">
-            Add Comment
+            Add Review
           </button>
         </div>
       </form>
@@ -70,4 +70,4 @@ const CommentForm = ({ thoughtId }: any) => {
   );
 };
 
-export default CommentForm;
+export default ReviewForm;

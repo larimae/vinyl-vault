@@ -23,32 +23,33 @@ export const ADD_USER = gql`
   }
 }
 `;
-
-export const ADD_THOUGHT = gql`
-  mutation AddThought($input: ThoughtInput!) {
-    addThought(input: $input) {
+// dont use
+export const ADD_VINYL = gql`
+  mutation AddVinyl($input: VinylInput!) {
+    addVinyl(input: $input) {
       _id
-      thoughtText
-      thoughtAuthor
+      vinylText
+      artist
       createdAt
-      comments {
+      reviews {
         _id
-        commentText
+        reviewText
       }
     }
   }
 `;
+//dont use
 
-export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+export const ADD_REVIEW = gql`
+  mutation addReview($vinylId: ID!, $reviewText: String!) {
+    addReview(vinylId: $vinylId, reviewText: $reviewText) {
       _id
-      thoughtText
-      thoughtAuthor
+      vinylText
+      artist
       createdAt
-      comments {
+      reviews {
         _id
-        commentText
+        reviewText
         createdAt
       }
     }

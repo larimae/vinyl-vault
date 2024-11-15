@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/client';
 
-import ThoughtList from '../components/ThoughtList/index.tsx';
-import ThoughtForm from '../components/ThoughtForm/index.tsx';
+import VinylList from '../components/VinylList/index.tsx';
+import VinylForm from '../components/VinylForm/index.tsx';
 
-import { QUERY_THOUGHTS } from '../utils/queries.ts';
+import { QUERY_VINYLS } from '../utils/queries.ts';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
-  const thoughts = data?.thoughts || [];
+  const { loading, data } = useQuery(QUERY_VINYLS);
+  const vinyls = data?.vinyls || [];
 
   return (
     <main>
@@ -16,14 +16,14 @@ const Home = () => {
           className="col-12 col-md-10 mb-3 p-3"
           style={{ border: '1px dotted #1a1a1a' }}
         >
-          <ThoughtForm />
+          <VinylForm />
         </div>
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <ThoughtList
-              thoughts={thoughts}
+            <VinylList
+              vinyls={vinyls}
               title="Some other review(s)..."
             />
           )}
