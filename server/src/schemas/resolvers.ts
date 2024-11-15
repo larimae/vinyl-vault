@@ -15,6 +15,10 @@ interface LoginUserArgs {
   password: string;
 }
 
+interface VinylSearchArgs {
+  input: string;
+}
+
 interface UserArgs {
   username: string;
 }
@@ -100,6 +104,26 @@ const resolvers = {
       // Return the token and the user
       return { token, user };
     },
+    //search Vinyl
+    findVinyl: async (_parent: any, { input }: VinylSearchArgs, context: any) :Promise<any> => {
+      try {
+        if (context.user) {
+        const vinyl = await Vinyl.find({
+          $or: [
+            { title: input },
+            { artist: input },
+            {song: input},
+          ]
+        }) || {};
+        if (vinyl) return vinyl
+      }
+      throw AuthenticationError;
+      ('You need to be logged in!');
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     addVinyl: async (_parent: any, { input }: AddVinylArgs, context: any) => {
       if (context.user) {
         const vinyl = await Vinyl.create({ ...input });

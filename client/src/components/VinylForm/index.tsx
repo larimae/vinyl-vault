@@ -13,24 +13,26 @@ const VinylForm = () => {
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addVinyl, { error }] = useMutation
-  (ADD_VINYL, {
-    refetchQueries: [
-      QUERY_VINYLS,
-      'getVinyls',
-      QUERY_ME,
-      'me'
-    ]
-  });
+    (ADD_VINYL, {
+      refetchQueries: [
+        QUERY_VINYLS,
+        'getVinyls',
+        QUERY_ME,
+        'me'
+      ]
+    });
 
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
       await addVinyl({
-        variables: { input:{
-          vinylText,
-          artist: Auth.getProfile().data.username,
-        }},
+        variables: {
+          input: {
+            vinylText,
+            artist: Auth.getProfile().data.username,
+          }
+        },
       });
 
       setVinylText('');
@@ -50,14 +52,19 @@ const VinylForm = () => {
 
   return (
     <div>
+      <nav className="navbar navbar-light bg-light">
+        <form className="form-inline">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </nav>
       <h3>What's on your techy mind?</h3>
 
       {Auth.loggedIn() ? (
         <>
           <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
+            className={`m-0 ${characterCount === 280 || error ? 'text-danger' : ''
+              }`}
           >
             Character Count: {characterCount}/280
           </p>

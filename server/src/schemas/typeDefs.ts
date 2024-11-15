@@ -21,7 +21,7 @@ const typeDefs = `
     createdAt: String
   }
 
-  input vinylInput {
+  input VinylInput {
     vinylText: String!
     artist: String!
   }
