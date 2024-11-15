@@ -1,22 +1,24 @@
 import { Schema, model, Document } from 'mongoose';
 
-// Define an interface for the Thought document
-interface IComment extends Document {
-  commentText: string;
+// Define an interface for the Vinyl document
+interface IReview extends Document {
+  reviewText: string;
   createdAt: Date;
 }
 
-interface IThought extends Document {
-  thoughtText: string;
-  thoughtAuthor: string;
-  createdAt: Date;
-  comments: IComment[];
+interface IVinyl extends Document {
+  vinylText: string;
+  artist: string;
+  album: string;
+  song: string;
+  genre: string;
+  reviews: IReview[];
 }
 
-// Define the schema for the Comment subdocument
-const commentSchema = new Schema<IComment>(
+// Define the schema for the Review subdocument
+const reviewSchema = new Schema<IReview>(
   {
-    commentText: {
+    reviewText: {
       type: String,
       required: true,
       minlength: 1,
@@ -31,30 +33,30 @@ const commentSchema = new Schema<IComment>(
   }
 );
 
-// Define the schema for the Thought document
-const thoughtSchema = new Schema<IThought>(
+// Define the schema for the Vinyl document
+const vinylSchema = new Schema<IVinyl>(
   {
-    thoughtText: {
+    vinylText: {
       type: String,
       required: true,
       minlength: 1,
       maxlength: 280,
       trim: true,
     },
-    thoughtAuthor: {
+    artist: {
       type: String,
       required: true,
       trim: true,
     },
-    comments: [commentSchema],
+    reviews: [reviewSchema],
   },
   {
-    timestamps: true,
+    timestamps: false,
     toJSON: { getters: true },
     toObject: { getters: true },
   }
 );
 
-const Thought = model<IThought>('Thought', thoughtSchema);
+const Vinyl = model<IVinyl>('Vinyl', vinylSchema);
 
-export default Thought;
+export default Vinyl;

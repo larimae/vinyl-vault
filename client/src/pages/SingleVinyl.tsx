@@ -1,19 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import CommentList from '../components/CommentList/index.tsx';
-import CommentForm from '../components/CommentForm/index.tsx';
+import ReviewList from '../components/ReviewList/index.tsx';
+import ReviewForm from '../components/ReviewForm/index.tsx';
 
-import { QUERY_SINGLE_THOUGHT } from '../utils/queries.ts';
+import { QUERY_SINGLE_VINYL } from '../utils/queries.ts';
 
-const SingleThought = () => {
-  const { thoughtId } = useParams();
+const SingleVinyl = () => {
+  const { vinylId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_SINGLE_THOUGHT, {
-    variables: { thoughtId: thoughtId },
+  const { loading, data } = useQuery(QUERY_SINGLE_VINYL, {
+    variables: { vinylId: vinylId },
   });
 
-  const thought = data?.thought || {};
+  const vinyl = data?.vinyl || {};
 
   if (loading) {
     return <div>Loading...</div>;
@@ -21,9 +21,9 @@ const SingleThought = () => {
   return (
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
-        {thought.thoughtAuthor} <br />
+        {vinyl.vinylAuthor} <br />
         <span style={{ fontSize: '1rem' }}>
-          Made this review on {new Date(Number(thought.createdAt)).toLocaleString()}
+          Made this review on {new Date(Number(vinyl.createdAt)).toLocaleString()}
         </span>
       </h3>
       <div className="bg-light py-4">
@@ -36,18 +36,18 @@ const SingleThought = () => {
             lineHeight: '1.5',
           }}
         >
-          {thought.thoughtText}
+          {vinyl.vinylText}
         </blockquote>
       </div>
 
       <div className="my-5">
-        <CommentList comments={thought.comments} />
+        <ReviewList reviews={vinyl.reviews} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm thoughtId={thought._id} />
+        <ReviewForm vinylId={vinyl._id} />
       </div>
     </div>
   );
 };
 
-export default SingleThought;
+export default SingleVinyl;

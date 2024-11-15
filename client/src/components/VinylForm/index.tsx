@@ -2,40 +2,38 @@ import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { ADD_VINYL } from '../../utils/mutations';
+import { QUERY_VINYLS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const ThoughtForm = () => {
-  const [thoughtText, setThoughtText] = useState('');
+const VinylForm = () => {
+  const [vinylText, setVinylText] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation
-    (ADD_THOUGHT, {
-      refetchQueries: [
-        QUERY_THOUGHTS,
-        'getThoughts',
-        QUERY_ME,
-        'me'
-      ]
-    });
+  const [addVinyl, { error }] = useMutation
+  (ADD_VINYL, {
+    refetchQueries: [
+      QUERY_VINYLS,
+      'getVinyls',
+      QUERY_ME,
+      'me'
+    ]
+  });
 
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
-      await addThought({
-        variables: {
-          input: {
-            thoughtText,
-            thoughtAuthor: Auth.getProfile().data.username,
-          }
-        },
+      await addVinyl({
+        variables: { input:{
+          vinylText,
+          artist: Auth.getProfile().data.username,
+        }},
       });
 
-      setThoughtText('');
+      setVinylText('');
     } catch (err) {
       console.error(err);
     }
@@ -44,27 +42,22 @@ const ThoughtForm = () => {
   const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = event.target;
 
-    if (name === 'thoughtText' && value.length <= 280) {
-      setThoughtText(value);
+    if (name === 'vinylText' && value.length <= 280) {
+      setVinylText(value);
       setCharacterCount(value.length);
     }
   };
 
   return (
     <div>
-      <nav className="navbar navbar-light bg-light">
-        <form className="form-inline">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </nav>
-      <h3>Review an album</h3>
+      <h3>What's on your techy mind?</h3>
 
       {Auth.loggedIn() ? (
         <>
           <p
-            className={`m-0 ${characterCount === 280 || error ? 'text-danger' : ''
-              }`}
+            className={`m-0 ${
+              characterCount === 280 || error ? 'text-danger' : ''
+            }`}
           >
             Character Count: {characterCount}/280
           </p>
@@ -74,9 +67,9 @@ const ThoughtForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="thoughtText"
-                placeholder="How do you feel about his album?"
-                value={thoughtText}
+                name="vinylText"
+                placeholder="Here's a new vinyls..."
+                value={vinylText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -85,7 +78,7 @@ const ThoughtForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Submit
+                Add Vinyls
               </button>
             </div>
             {error && (
@@ -97,7 +90,7 @@ const ThoughtForm = () => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to share your vinyls. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
@@ -105,4 +98,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default VinylForm;
