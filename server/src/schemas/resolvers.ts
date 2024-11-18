@@ -58,6 +58,25 @@ const resolvers = {
     vinyl: async (_parent: any, { vinylId }: VinylArgs) => {
       return await Vinyl.findOne({ _id: vinylId });
     },
+        //search Vinyl
+        findVinyl: async (_parent: any, { input }: VinylSearchArgs, context: any) :Promise<any> => {
+          try {
+            if (context.user) {
+            const vinyl = await Vinyl.find({
+              $or: [
+                { title: input },
+                { artist: input },
+                {song: input},
+              ]
+            }) || {};
+            if (vinyl) return vinyl
+          }
+          throw AuthenticationError;
+          ('You need to be logged in!');
+          } catch (error) {
+            console.error(error);
+          }
+        },
     // Query to get the authenticated user's information
     // The 'me' query relies on the context to check if the user is authenticated
     me: async (_parent: any, _args: any, context: any) => {
@@ -69,6 +88,7 @@ const resolvers = {
       throw new AuthenticationError('Could not authenticate user.');
     },
   },
+
   Mutation: {
     addUser: async (_parent: any, { input }: AddUserArgs) => {
       // Create a new user with the provided username, email, and password
@@ -104,25 +124,7 @@ const resolvers = {
       // Return the token and the user
       return { token, user };
     },
-    //search Vinyl
-    findVinyl: async (_parent: any, { input }: VinylSearchArgs, context: any) :Promise<any> => {
-      try {
-        if (context.user) {
-        const vinyl = await Vinyl.find({
-          $or: [
-            { title: input },
-            { artist: input },
-            {song: input},
-          ]
-        }) || {};
-        if (vinyl) return vinyl
-      }
-      throw AuthenticationError;
-      ('You need to be logged in!');
-      } catch (error) {
-        console.error(error);
-      }
-    },
+
 
     addVinyl: async (_parent: any, { input }: AddVinylArgs, context: any) => {
       if (context.user) {

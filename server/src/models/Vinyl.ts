@@ -10,6 +10,7 @@ interface IVinyl extends Document {
   vinylText: string;
   artist: string;
   album: string;
+  cover: string;
   song: string;
   genre: string;
   reviews: IReview[];

@@ -57,3 +57,14 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_SEARCHVINYL = gql`
+query Query($input: String) {
+  findVinyl(input: $input) {
+    _id
+    vinylText
+    artist
+    createdAt
+  }
+}
+`;

@@ -43,6 +43,7 @@ const typeDefs = `
     vinyls: [Vinyl]!
     vinyl(vinylId: ID!): Vinyl
     me: User
+    findVinyl(input: String): [Vinyl]! 
   }
 
   type Mutation {
