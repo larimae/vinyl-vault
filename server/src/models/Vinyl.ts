@@ -49,6 +49,26 @@ const vinylSchema = new Schema<IVinyl>(
       required: true,
       trim: true,
     },
+    album: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    cover: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    song: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    genre: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     reviews: [reviewSchema],
   },
   {
