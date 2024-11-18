@@ -21,7 +21,7 @@ const typeDefs = `
     createdAt: String
   }
 
-  input vinylInput {
+  input VinylInput {
     vinylText: String!
     artist: String!
   }
@@ -43,6 +43,7 @@ const typeDefs = `
     vinyls: [Vinyl]!
     vinyl(vinylId: ID!): Vinyl
     me: User
+    findVinyl(input: String): [Vinyl]! 
   }
 
   type Mutation {
