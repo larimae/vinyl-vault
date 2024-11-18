@@ -55,3 +55,16 @@ export const ADD_REVIEW = gql`
     }
   }
 `;
+
+export const SEARCH_VINYL = gql`
+mutation Mutation {
+  findVinyl {
+    album
+    artist
+    cover
+    genre
+    song
+    vinylText
+    _id
+  }
+}`;

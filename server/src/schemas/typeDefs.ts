@@ -11,7 +11,10 @@ const typeDefs = `
     _id: ID
     vinylText: String
     artist: String
-    createdAt: String
+    song: String
+    album: String
+    cover: String
+    genre: String
     reviews: [Review]!
   }
 
@@ -43,7 +46,6 @@ const typeDefs = `
     vinyls: [Vinyl]!
     vinyl(vinylId: ID!): Vinyl
     me: User
-    findVinyl(input: String): [Vinyl]! 
   }
 
   type Mutation {
@@ -53,6 +55,7 @@ const typeDefs = `
     addReview(vinylId: ID!, reviewText: String!): Vinyl
     removeVinyl(vinylId: ID!): Vinyl
     removeReview(vinylId: ID!, reviewId: ID!): Vinyl
+    findVinyl(input: String): [Vinyl]! 
   }
 `;
 

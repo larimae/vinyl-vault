@@ -1,16 +1,13 @@
 import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import VinylList from '../components/VinylList/index.tsx';
-import { QUERY_VINYLS, QUERY_SEARCHVINYL } from '../utils/queries.ts';
-
+import { QUERY_VINYLS } from '../utils/queries.ts';
+import { SEARCH_VINYL } from '../utils/mutations.ts';
 const Home = () => {
   const [vinyls, setVinyls] = useState([]);
   const [vinylText, setVinylText] = useState('');
   const { loading, data } = useQuery(QUERY_VINYLS);
-  const { loading: loading2, data: data2, refetch } = useQuery(QUERY_SEARCHVINYL, {
-    variables: { input: vinylText },
-  });
-  const [formSubmitted, setformSubmitted] = useState(false);
+  const [findVinyl] = useMutation(SEARCH_VINYL);
 
   useEffect(() => {
     if (!loading) {
@@ -20,19 +17,15 @@ const Home = () => {
   useEffect(() => {
     console.log(vinyls);
   }, [vinyls])
-  useEffect(() => {
-    refetch()
-    console.log(data2);
-    if (formSubmitted && data2.findVinyl.length > 0) {
-        setVinyls(data2?.findVinyl);
-    }
-  }, [formSubmitted, data2])
+
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     try {
-
-      setformSubmitted(true);
+      const { data } = await findVinyl ({
+        variables: { input: vinylText },
+      })
+      setVinyls(data?.findVinyl)
     } catch (err) {
       console.error(err);
     }
