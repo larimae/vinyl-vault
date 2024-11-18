@@ -65,7 +65,7 @@ const Home = () => {
           ) : (
             <VinylList
               vinyls={vinyls}
-              title="Some other review(s)..."
+              title="List of song(s)..."
             />
           )}
         </div>

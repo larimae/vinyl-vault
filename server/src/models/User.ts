@@ -33,7 +33,7 @@ const userSchema = new Schema<IUser>(
     vinlys: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Vinly',
+        ref: 'Vinyl',
       },
     ],
   },

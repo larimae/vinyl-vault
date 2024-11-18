@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 
 interface Vinyl {
   _id: string;
-  artist: string;
-  createdAt: string;
   vinylText: string;
+    artist: string;
+    song: string;
+    album: string;
+    cover: string;
+    genre: string;
 }
 
 interface VinylListProps {
@@ -27,11 +30,19 @@ const VinylList: React.FC<VinylListProps> = ({ vinyls, title }) => {
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {vinyl.artist} <br />
               <span style={{ fontSize: '1rem' }}>
-                Made this review on {new Date(Number(vinyl.createdAt)).toLocaleString()}
+                Song: {vinyl.song}
+                <br />
+                Album: {vinyl.album}
               </span>
             </h4>
             <div className="card-body bg-light p-2">
               <p>{vinyl.vinylText}</p>
+              <p>{vinyl.genre}</p>
+              <img
+                src={vinyl.cover}
+                alt={vinyl.album}
+                style={{ width: '100%', height: 'auto' }}
+              />
             </div>
             {/* Create a link to this vinyl's page to view its comments using `<Link>` component */}
             <Link
