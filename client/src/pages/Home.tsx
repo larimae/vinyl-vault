@@ -22,10 +22,11 @@ const Home = () => {
     event.preventDefault();
 
     try {
-      const { data } = await findVinyl ({
+      const { data: data2 } = await findVinyl ({
         variables: { input: vinylText },
       })
-      setVinyls(data?.findVinyl)
+      setVinyls(data2?.findVinyl)
+      setVinylText('');
     } catch (err) {
       console.error(err);
     }

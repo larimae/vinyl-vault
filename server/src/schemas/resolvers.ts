@@ -108,13 +108,16 @@ const resolvers = {
     findVinyl: async (_parent: any, { input }: VinylSearchArgs, context: any) :Promise<any> => {
       try {
         if (context.user) {
+          console.log(input);
         const vinyl = await Vinyl.find({
           $or: [
-            { title: input },
+            { album: input },
             { artist: input },
-            {song: input},
+            { song: input },
+            { genre: input },
           ]
         }) || {};
+        console.log(vinyl);
         if (vinyl) return vinyl
       }
       throw AuthenticationError;

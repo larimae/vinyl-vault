@@ -16,15 +16,17 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_VINYLS = gql`
-  query getVinyls {
-    vinyls {
-      _id
-      vinylText
-      artist
-      createdAt
-    }
+  query Query {
+  vinyls {
+    _id
+    album
+    artist
+    cover
+    genre
+    song
+    vinylText
   }
-`;
+}`;
 
 export const QUERY_SINGLE_VINYL = gql`
  query Vinyl($vinylId: ID!) {
