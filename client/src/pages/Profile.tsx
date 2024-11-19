@@ -49,19 +49,27 @@ const Profile = () => {
           {vinyls.length ? (
             <ul>
               {vinyls.map((vinyl: any) => (
-                <li key={vinyl._id}>
-                  <strong>Song:</strong> {vinyl.song} by {vinyl.artist} <br />
-                  <strong>Album:</strong> {vinyl.album} <br />
+                <li key={vinyl._id} className="card mb-3">
+                  <h4 className="card-header bg-primary text-light p-2 m-0">
+                    {vinyl.artist} <br />
+                  <span style={{ fontSize: '1rem' }}>
+                    Song: {vinyl.song}
+                  <br />
+                      Album: {vinyl.album}
+                  </span>
+            </h4>
+                <div className="card-body bg-light p-2" style= {{display: 'flex', justifyContent: 'center'}}>
                   <img
                   src={vinyl.cover}
                   alt={vinyl.album}
                   style={{ width: '25%', height: 'auto' }}
                   />
+                  </div>
                   {vinyl.reviews.length ? (
-                    <ul>
+                    <ul className="bg-primary text-light p-2 m-0">
                       {vinyl.reviews.map((review: any) => (
                         <li>
-                            <strong>Review:</strong> {review.reviewText}
+                          <strong>Review:</strong> {review.reviewText}
                         </li> 
                       ))}
                     </ul> 
