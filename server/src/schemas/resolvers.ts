@@ -178,6 +178,10 @@ const resolvers = {
         throw new Error('Vinyl not found');
       }
 
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $push: { vinyls: vinylId } }
+      )
       return vinyl;
     },
     // removeVinyl: async (_parent: any, { vinylId }: VinylArgs, context: any) => {
