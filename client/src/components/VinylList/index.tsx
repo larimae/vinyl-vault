@@ -49,7 +49,7 @@ const VinylList: React.FC<VinylListProps> = ({ vinyls, title }) => {
               className="btn btn-primary btn-block btn-squared"
               to={`/vinyls/${vinyl._id}`}
             >
-              Comment on this review.
+              Leave a review?
             </Link>
           </div>
         ))}
