@@ -11,6 +11,7 @@ interface Vinyl {
     genre: string;
 }
 
+
 interface VinylListProps {
   vinyls: Vinyl[];
   title: string;
