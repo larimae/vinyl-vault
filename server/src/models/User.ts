@@ -6,7 +6,7 @@ interface IUser extends Document {
   username: string;
   email: string;
   password: string;
-  vinlys: Schema.Types.ObjectId[];
+  vinyls: Schema.Types.ObjectId[];
   isCorrectPassword(password: string): Promise<boolean>;
 }
 
@@ -30,7 +30,7 @@ const userSchema = new Schema<IUser>(
       required: true,
       minlength: 5,
     },
-    vinlys: [
+    vinyls: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Vinyl',

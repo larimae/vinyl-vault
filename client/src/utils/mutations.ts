@@ -44,13 +44,9 @@ export const ADD_REVIEW = gql`
   mutation addReview($vinylId: ID!, $reviewText: String!) {
     addReview(vinylId: $vinylId, reviewText: $reviewText) {
       _id
-      vinylText
-      artist
-      createdAt
       reviews {
         _id
         reviewText
-        createdAt
       }
     }
   }

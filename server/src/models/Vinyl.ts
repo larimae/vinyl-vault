@@ -3,7 +3,8 @@ import { Schema, model, Document } from 'mongoose';
 // Define an interface for the Vinyl document
 interface IReview extends Document {
   reviewText: string;
-  createdAt: Date;
+  user: Schema.Types.ObjectId[];
+  vinyl: Schema.Types.ObjectId[];
 }
 
 interface IVinyl extends Document {
@@ -25,12 +26,24 @@ const reviewSchema = new Schema<IReview>(
       minlength: 1,
       maxlength: 280,
     },
+    user: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    vinyl: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Vinyl',
+      },
+    ],
   },
   {
     _id: false,
     toJSON: { getters: true },
     toObject: { getters: true },
-    timestamps: true,
+    timestamps: false,
   }
 );
 

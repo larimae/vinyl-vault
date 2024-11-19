@@ -8,8 +8,12 @@ export const QUERY_USER = gql`
       email
       vinyls {
         _id
+        album
+        artist
+        cover
+        genre
+        song
         vinylText
-        createdAt
       }
     }
   }
@@ -29,16 +33,18 @@ export const QUERY_VINYLS = gql`
 }`;
 
 export const QUERY_SINGLE_VINYL = gql`
- query Vinyl($vinylId: ID!) {
+  query Vinyl($vinylId: ID!) {
   vinyl(vinylId: $vinylId) {
     _id
     vinylText
     artist
-    createdAt
+    song
+    album
+    cover
+    genre
     reviews {
       _id
       reviewText
-      createdAt
     }
   }
 }
@@ -54,9 +60,33 @@ export const QUERY_ME = gql`
         _id
         vinylText
         artist
-        createdAt
+        song
+        album
+        cover
+        genre
+        reviews {
+          _id
+          reviewText
+    }
       }
     }
   }
 `;
+
+export const QUERY_REVIEWS = gql`
+  query GetReviewsByUser {
+    reviewsByUser {
+      _id
+      reviewText
+      user {
+        username
+      }
+      vinyl {
+        _id
+        vinylText
+        artist
+        album
+      }
+    }
+  }`;
 
