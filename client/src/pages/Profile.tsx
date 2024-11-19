@@ -1,7 +1,5 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import VinylList from '../components/VinylList';
-import { Review } from '../components/ReviewList';
 import { QUERY_USER, QUERY_ME, QUERY_REVIEWS } from '../utils/queries';
 
 import Auth from '../utils/auth';
@@ -13,10 +11,11 @@ const Profile = () => {
     variables: { username: userParam },
   });
 
-  const { loading: reviewsLoading, data: reviewsData } = useQuery(QUERY_REVIEWS);
+  const { loading: reviewsLoading } = useQuery(QUERY_REVIEWS);
 
   const user = userData?.me || userData?.user || {};
-  const reviews = reviewsData?.reviewsByUser || [];
+  const vinyls = user.vinyls || [];
+
   
   // This if condition checks if the user is logged in and if the logged-in user's username matches the userParam.
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -44,24 +43,32 @@ const Profile = () => {
           Viewing {userParam ? `${user.username}'s` : 'your'} profile.
         </h2>
 
-        {/* Render user's vinyl list */}
-        <div className="col-12 col-md-10 mb-5">
-          <VinylList
-            vinyls={user.vinyls}
-            title={`${user.username}'s vinyls...`}
-          />
-        </div>
-
         {/* Render reviews with vinyl context */}
         <div className="col-12 col-md-10 mb-5">
           <h3>Reviews by {userParam ? user.username : 'you'}:</h3>
-          {reviews.length ? (
+          {vinyls.length ? (
             <ul>
-              {reviews.map((review: Review) => (
-                <li key={review._id}>
-                  <strong>Vinyl:</strong> {review.vinyl.vinylText} by {review.vinyl.artist} <br />
-                  <strong>Review:</strong> {review.reviewText}
-                  <p><em>Album: {review.vinyl.album}</em></p>
+              {vinyls.map((vinyl: any) => (
+                <li key={vinyl._id}>
+                  <strong>Song:</strong> {vinyl.song} by {vinyl.artist} <br />
+                  <strong>Album:</strong> {vinyl.album} <br />
+                  <img
+                  src={vinyl.cover}
+                  alt={vinyl.album}
+                  style={{ width: '25%', height: 'auto' }}
+                  />
+                  {vinyl.reviews.length ? (
+                    <ul>
+                      {vinyl.reviews.map((review: any) => (
+                        <li>
+                            <strong>Review:</strong> {review.reviewText}
+                        </li> 
+                      ))}
+                    </ul> 
+                  ): (
+                    <p>No reviews found for this vinyl.</p>
+                  )}
+                  
                 </li>
               ))}
             </ul>
