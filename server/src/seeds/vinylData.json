@@ -1,0 +1,245 @@
+[
+  {
+    "vinylText": "Is this the real life? Is this just fantasy? Caught in a landslide, no escape from reality.",
+    "artist": "Queen",
+    "album": "A Night at the Opera",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/4/4d/Queen_A_Night_At_The_Opera.png",
+    "song": "Bohemian Rhapsody",
+    "genre": "Rock",
+    "reviews": []
+  },
+  {
+    "vinylText": "I’m gonna pop some tags, only got twenty dollars in my pocket.",
+    "artist": "Macklemore & Ryan Lewis",
+    "album": "The Heist",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/3/3a/The_Heist_cover.png",
+    "song": "Thrift Shop",
+    "genre": "Hip-Hop",
+    "reviews": []
+  },
+  {
+    "vinylText": "You just want attention, you don't want my heart.",
+    "artist": "Shawn Mendes",
+    "album": "Illuminate",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/d/d2/Illuminate_%28Official_Album_Cover%29_by_Shawn_Mendes.png",
+    "song": "Treat You Better",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "I see trees of green, red roses too, I see them bloom for me and you.",
+    "artist": "Louis Armstrong",
+    "album": "What a Wonderful World",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/6/63/Louis_Armstrong_What_a_Wonderful_World.jpg",
+    "song": "What a Wonderful World",
+    "genre": "Jazz",
+    "reviews": []
+  },
+  {
+    "vinylText": "I don't care, I love it. I don't care.",
+    "artist": "Icona Pop",
+    "album": "This Is... Icona Pop",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/4/4d/This_Is..._Icona_Pop_by_Icona_Pop.png",
+    "song": "I Love It",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "We're no strangers to love, you know the rules and so do I.",
+    "artist": "Rick Astley",
+    "album": "Whenever You Need Somebody",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/1/1c/Rick_Astley_-_Whenever_You_Need_Somebody.png",
+    "song": "Never Gonna Give You Up",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "I’m in love with the shape of you.",
+    "artist": "Ed Sheeran",
+    "album": "Divide",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/b/b4/Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png",
+    "song": "Shape of You",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "Rolling in the deep, you had my heart inside of your hand.",
+    "artist": "Adele",
+    "album": "21",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/1/1b/Adele_-_21.png",
+    "song": "Rolling in the Deep",
+    "genre": "Soul",
+    "reviews": []
+  },
+  {
+    "vinylText": "Cause you’re a sky, cause you’re a sky full of stars.",
+    "artist": "Coldplay",
+    "album": "Ghost Stories",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/8/8a/Coldplay_-_Ghost_Stories.png",
+    "song": "A Sky Full of Stars",
+    "genre": "Alternative Rock",
+    "reviews": []
+  },
+  {
+    "vinylText": "Despacito, quiero desnudarte por la playa.",
+    "artist": "Luis Fonsi, Daddy Yankee",
+    "album": "Vida",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/8/8f/Luis_Fonsi_-_Vida.png",
+    "song": "Despacito",
+    "genre": "Reggaeton",
+    "reviews": []
+  },
+  {
+    "vinylText": "I'm gonna love you, like I'm gonna lose you.",
+    "artist": "Meghan Trainor feat. John Legend",
+    "album": "Title",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/f/f8/Meghan_Trainor_-_Title_%28Official_Album_Cover%29.png",
+    "song": "Like I'm Gonna Lose You",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "I came in like a wrecking ball!",
+    "artist": "Miley Cyrus",
+    "album": "Bangerz",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/5/52/Bangerz.png",
+    "song": "Wrecking Ball",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "Let it go, let it go, can't hold it back anymore.",
+    "artist": "Idina Menzel",
+    "album": "Frozen OST",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/1/1e/Idina_Menzel_-_Let_It_Go.png",
+    "song": "Let It Go",
+    "genre": "Soundtrack",
+    "reviews": []
+  },
+  {
+    "vinylText": "You used to call me on my cell phone, late-night when you need my love.",
+    "artist": "Drake",
+    "album": "If You're Reading This It's Too Late",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/1/11/Drake_-_If_You%27re_Reading_This_It%27s_Too_Late.png",
+    "song": "Hotline Bling",
+    "genre": "Hip-Hop",
+    "reviews": []
+  },
+  {
+    "vinylText": "I'm your biggest fan, I'll follow you until you love me.",
+    "artist": "Lady Gaga",
+    "album": "The Fame",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/d/dd/Lady_Gaga_%E2%80%93_The_Fame_album_cover.png",
+    "song": "Paparazzi",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "We found love in a hopeless place.",
+    "artist": "Rihanna feat. Calvin Harris",
+    "album": "Talk That Talk",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/8/8e/Rihanna_-_Talk_That_Talk_%28standard%29.png",
+    "song": "We Found Love",
+    "genre": "Dance-Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "Just a small-town girl, living in a lonely world.",
+    "artist": "Journey",
+    "album": "Escape",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/e/e0/JourneyEscapealbumcover.jpg",
+    "song": "Don't Stop Believin'",
+    "genre": "Rock",
+    "reviews": []
+  },
+  {
+    "vinylText": "I’ve got the eye of the tiger, a fighter, dancing through the fire.",
+    "artist": "Katy Perry",
+    "album": "Prism",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/b/b7/Katy_Perry_-_Prism_cover.png",
+    "song": "Roar",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "Don't stop the music, no, I won't stop until I get enough.",
+    "artist": "Michael Jackson",
+    "album": "Dangerous",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg",
+    "song": "Don't Stop 'Til You Get Enough",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "Wake me up when it's all over, when I'm wiser and I'm older.",
+    "artist": "Avicii",
+    "album": "True",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/e/e5/Avicii_-_True_%28Album%29.png",
+    "song": "Wake Me Up",
+    "genre": "EDM",
+    "reviews": []
+  },
+  {
+    "vinylText": "This is the part when I say I don't want ya.",
+    "artist": "Ariana Grande",
+    "album": "Dangerous Woman",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/8/83/Dangerous_Woman_single_cover.png",
+    "song": "Dangerous Woman",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "I’ve been watching you, a whole lot of things I would say.",
+    "artist": "Ed Sheeran",
+    "album": "Plus",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/3/3f/Ed_Sheeran_%2B_cover.png",
+    "song": "The A Team",
+    "genre": "Folk",
+    "reviews": []
+  },
+  {
+    "vinylText": "I'm the one that’s stuck in your head.",
+    "artist": "The Chainsmokers",
+    "album": "Memories...Do Not Open",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/5/51/Memories...Do_Not_Open.jpg",
+    "song": "Something Just Like This",
+    "genre": "EDM",
+    "reviews": []
+  },
+  {
+    "vinylText": "And I will always love you.",
+    "artist": "Whitney Houston",
+    "album": "The Bodyguard OST",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Whitney_Houston_-_The_Bodyguard.png/220px-Whitney_Houston_-_The_Bodyguard.png",
+    "song": "I Will Always Love You",
+    "genre": "Pop/Soul",
+    "reviews": []
+  },
+  {
+    "vinylText": "When you left, I lost a part of me.",
+    "artist": "Mariah Carey",
+    "album": "Music Box",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/7/75/Music_Box_Mariah_Carey.png",
+    "song": "We Belong Together",
+    "genre": "R&B",
+    "reviews": []
+  },
+  {
+    "vinylText": "Now I’m feeling so fly like a G6.",
+    "artist": "Far East Movement",
+    "album": "Free Wired",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/d/d3/Fareastmovement_freewired.jpg",
+    "song": "Like a G6",
+    "genre": "Pop",
+    "reviews": []
+  },
+  {
+    "vinylText": "No, I don’t want no scrub, a scrub is a guy that can't get no love from me.",
+    "artist": "TLC",
+    "album": "FanMail",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/e/e2/TLC_-_FanMail.png",
+    "song": "No Scrubs",
+    "genre": "R&B",
+    "reviews": []
+  }
+]
