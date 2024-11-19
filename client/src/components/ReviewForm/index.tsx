@@ -1,16 +1,17 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { useMutation } from '@apollo/client';
-
 import { ADD_REVIEW } from '../../utils/mutations';
 
-const ReviewForm = ({ vinylId }: any) => {
+const ReviewForm = ({ vinylId }: { vinylId: string }) => {
   const [reviewText, setReviewText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-
   const [addReview, { error }] = useMutation(ADD_REVIEW);
 
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
+    console.log("Submitting Review for vinylId:", vinylId);
+    console.log("Review Text:", reviewText);
 
     try {
       await addReview({
@@ -21,7 +22,7 @@ const ReviewForm = ({ vinylId }: any) => {
 
       setReviewText('');
     } catch (err) {
-      console.error(err);
+      console.error("Error submitting review:", err);
     }
   };
 
@@ -36,7 +37,7 @@ const ReviewForm = ({ vinylId }: any) => {
 
   return (
     <div>
-      <h4>What are your vinyls on this vinyl?</h4>
+      <h4>What are your thoughts on this vinyl?</h4>
       <p
         className={`m-0 ${
           characterCount === 280 || error ? 'text-danger' : ''

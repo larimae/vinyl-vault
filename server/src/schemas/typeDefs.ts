@@ -21,7 +21,8 @@ const typeDefs = `
   type Review {
     _id: ID
     reviewText: String
-    createdAt: String
+    user: User
+    vinyl: Vinyl
   }
 
   input VinylInput {
@@ -46,14 +47,13 @@ const typeDefs = `
     vinyls: [Vinyl]!
     vinyl(vinylId: ID!): Vinyl
     me: User
+    reviewsByUser: [Review]!
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    addVinyl(input: VinylInput!): Vinyl
     addReview(vinylId: ID!, reviewText: String!): Vinyl
-    removeVinyl(vinylId: ID!): Vinyl
     removeReview(vinylId: ID!, reviewId: ID!): Vinyl
     findVinyl(input: String): [Vinyl]! 
   }

@@ -27,12 +27,12 @@ interface VinylArgs {
   vinylId: string;
 }
 
-interface AddVinylArgs {
-  input:{
-    vinylText: string;
-    artist: string;
-  }
-}
+// interface AddVinylArgs {
+//   input:{
+//     vinylText: string;
+//     artist: string;
+//   }
+// }
 
 interface AddReviewArgs {
   vinylId: string;
@@ -67,6 +67,23 @@ const resolvers = {
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
+    },
+    reviewsByUser: async (_parent: any, _args: any, context: any) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in.');
+      }
+    
+      return Vinyl.find({ 'reviews.user': context.user._id })
+        .populate({
+          path: 'reviews',
+          populate: {
+            path: 'vinyl', // Populate the vinyl field for each review
+            model: 'Vinyl',
+            select: '_id vinylText artist album', // Only include these fields
+          },
+          match: { user: context.user._id },
+        })
+        .then((vinyls) => vinyls.flatMap((vinyl) => vinyl.reviews));
     },
   },
 
@@ -126,57 +143,63 @@ const resolvers = {
         console.error(error);
       }
     },
-    addVinyl: async (_parent: any, { input }: AddVinylArgs, context: any) => {
-      if (context.user) {
-        const vinyl = await Vinyl.create({ ...input });
+    // addVinyl: async (_parent: any, { input }: AddVinylArgs, context: any) => {
+    //   if (context.user) {
+    //     const vinyl = await Vinyl.create({ ...input });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { vinyls: vinyl._id } }
-        );
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { vinyls: vinyl._id } }
+    //     );
 
-        return vinyl;
-      }
-      throw AuthenticationError;
-      ('You need to be logged in!');
-    },
+    //     return vinyl;
+    //   }
+    //   throw AuthenticationError;
+    //   ('You need to be logged in!');
+    // },
     addReview: async (_parent: any, { vinylId, reviewText }: AddReviewArgs, context: any) => {
-      if (context.user) {
-        return Vinyl.findOneAndUpdate(
-          { _id: vinylId },
-          {
-            $addToSet: {
-              reviews: { reviewText, reviewAuthor: context.user.username },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in to add a review.');
       }
-      throw AuthenticationError;
-    },
-    removeVinyl: async (_parent: any, { vinylId }: VinylArgs, context: any) => {
-      if (context.user) {
-        const vinyl = await Vinyl.findOneAndDelete({
-          _id: vinylId,
-          vinylAuthor: context.user.username,
-        });
-
-        if(!vinyl){
-          throw AuthenticationError;
-        }
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { vinyls: vinyl._id } }
-        );
-
-        return vinyl;
+    
+      const newReview = {
+        reviewText,
+        user: context.user._id,
+      };
+    
+      // Save the review and update the Vinyl's reviews
+      const vinyl = await Vinyl.findByIdAndUpdate(
+        vinylId,
+        { $push: { reviews: newReview } },
+        { new: true, runValidators: true }
+      );
+    
+      if (!vinyl) {
+        throw new Error('Vinyl not found');
       }
-      throw AuthenticationError;
+
+      return vinyl;
     },
+    // removeVinyl: async (_parent: any, { vinylId }: VinylArgs, context: any) => {
+    //   if (context.user) {
+    //     const vinyl = await Vinyl.findOneAndDelete({
+    //       _id: vinylId,
+    //       vinylAuthor: context.user.username,
+    //     });
+
+    //     if(!vinyl){
+    //       throw AuthenticationError;
+    //     }
+
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { vinyls: vinyl._id } }
+    //     );
+
+    //     return vinyl;
+    //   }
+    //   throw AuthenticationError;
+    // },
     removeReview: async (_parent: any, { vinylId, reviewId }: RemoveReviewArgs, context: any) => {
       if (context.user) {
         return Vinyl.findOneAndUpdate(
