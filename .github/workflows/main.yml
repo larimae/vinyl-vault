@@ -3,7 +3,7 @@ on:
   pull_request:
     branches:
       - develop
-      - feature/branch
+      - feature/thefunpart
 jobs:
   test:
     name: Checking Tests
